@@ -1,6 +1,6 @@
 # Unit 1: The Augmented LLM
 
-The foundation for all agent systems: an LLM enhanced with **tools** and **retrieval**.
+The foundation for all agent systems: an LLM enhanced with **tools** and **retrieval** (no **memory** for now).
 
 ![The Augmented LLM](figures/augmented_llm.png)
 
