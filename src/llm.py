@@ -9,11 +9,11 @@ from pdb import set_trace
 # %%
 # LLM class
 '''This is the LLM wrapper:
-    1. Sends messages to Claude via the Anthropic API
-    2. Detects when Claude wants to use a tool
+    1. Sends messages to LLM via the Anthropic API
+    2. Detects when LLM wants to use a tool
     3. Executes the tool via the Executor
-    4. Sends the result back to Claude
-    5. Repeats until Claude gives a final text response
+    4. Sends the result back to LLM
+    5. Repeats until LLM gives a final text response
 '''
 class LLM:
     """Wrapper for Antrhoopic API with tool support"""

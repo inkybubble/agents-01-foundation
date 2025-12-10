@@ -43,7 +43,8 @@ class VectorIndex:
         else:
             self.embeddings=np.vstack([self.embeddings, new_embeddings])
 
-    def search(self, query: str, top_k: int=3) -> List[Tuple[str, float]]:
+    def search(self, query: str, top_k: int=3,
+               min_score: float=0.3) -> List[Tuple[str, float]]:
         """
         Search for similar chunks.
         We're here:
@@ -67,6 +68,7 @@ class VectorIndex:
             idx_sorted_top_k=np.flip(np.argsort(similarities)[-top_k_actual:])
             found=[]
             for idx in idx_sorted_top_k:
-                found.append((self.chunks[idx], similarities[idx]))
+                if similarities[idx]>=min_score:
+                    found.append((self.chunks[idx], similarities[idx]))
             return found
         

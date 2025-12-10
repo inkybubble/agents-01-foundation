@@ -3,6 +3,12 @@
 from ..tools.base import Tool
 from .index import VectorIndex
 
+import logging
+
+# %%
+# Initializations
+logger=logging.getLogger(__name__)
+
 # %%
 # Retrieval Tool class
 
@@ -46,6 +52,7 @@ class RetrievalTool(Tool):
         """
         result=self.index.search(query=query, top_k=num_results)
         if not result:
+            logger.info(f"No relevant documents found for query: '{query}'")
             return "No relevant documents found"
         else:
             formatted=[]

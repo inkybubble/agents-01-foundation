@@ -60,13 +60,24 @@ def main():
     llm = LLM(executor)
 
     # 5. Test query that needs BOTH tools
-    query = "How tall is the Eiffel Tower in feet? (1 meter = 3.28 feet)"
-    print(f"User: {query}")
+    def query_tester(query: str) -> None:
+        print(f"User: {query}")
 
-    messages = [{"role": "user", "content": query}]
-    response = llm.chat(messages)
-    print(f"Assistant: {response}")
+        messages = [{"role": "user", "content": query}]
+        response = llm.chat(messages)
+        print(f"Assistant: {response}")
+    
+    print("\n\n******** This query tests both tools:\n")
+    query_tester("How tall is the Eiffel Tower in feet? (1 meter = 3.28 feet)")
 
+    print("\n\n******** This query tests only retrieval:\n")
+    query_tester("When was Python created?")
 
+    print("\n\n******** This query tests tool error handling (e.g., division by zero):\n")
+    query_tester("What is 100 / 0?")
+
+    print("\n\n******** This query tests rag error handling (e.g., no matching documents):\n")
+    query_tester("What is the population of Tokyo?")
+    
 if __name__ == "__main__":
     main()
